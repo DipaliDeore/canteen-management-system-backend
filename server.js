@@ -5,11 +5,16 @@ require('dotenv').config();
 const app = express();
 const db = require('./db/db'); // DB connection
 const authRoutes = require('./routes/authRoute'); // Import auth routes
+
 const menuRoutes = require('./routes/admin/menuRoute');
+
+const contactRoutes = require('./routes/contactUsRoute');//contactUs
+const feedbackRoutes = require('./routes/feedbackRoute');//feedback
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
+
 
 // Test DB connection
 app.get('/api/test-db', async (req, res) => {
@@ -24,8 +29,13 @@ app.get('/api/test-db', async (req, res) => {
 
 // Mount auth routes
 app.use('/api', authRoutes);
+
 app.use('/menu',menuRoutes);
 app.use('/uploads',express.static('uploads'));
+
+
+app.use('/api', feedbackRoutes);
+app.use('/api', contactRoutes);
 
 // Default route
 app.get('/', (req, res) => {

@@ -5,6 +5,7 @@ require('dotenv').config();
 const app = express();
 const db = require('./db/db'); // DB connection
 const authRoutes = require('./routes/authRoute'); // Import auth routes
+const menuRoutes = require('./routes/admin/menuRoute');
 
 // Middlewares
 app.use(cors());
@@ -23,6 +24,8 @@ app.get('/api/test-db', async (req, res) => {
 
 // Mount auth routes
 app.use('/api', authRoutes);
+app.use('/menu',menuRoutes);
+app.use('/uploads',express.static('uploads'));
 
 // Default route
 app.get('/', (req, res) => {

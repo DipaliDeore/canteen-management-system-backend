@@ -24,3 +24,4 @@ router.get('/get-menu/:meal_type',authenticateToken,authorizeRoles('admin'),menu
 router.put('/update-menu/:id',authenticateToken,authorizeRoles('admin'),upload.single('image'),menuController.updateMenuItem);
 
 module.exports = router;
+

@@ -19,9 +19,17 @@ const upload = multer({ storage: storage });
 // Add Menu Item (Admin only)
 router.post('/add-menu',authenticateToken,authorizeRoles('admin'),upload.single('image'), // mandatory image
 menuController.addMenuItem);
+
+// Get all menu items
 router.get('/get-all-menu',authenticateToken,authorizeRoles('admin'),menuController.getAllMenuItems);
+
+// Get menu items by meal type
 router.get('/get-menu/:meal_type',authenticateToken,authorizeRoles('admin'),menuController.getMenuItemsByType);
+
+// Update menu item
 router.put('/update-menu/:id',authenticateToken,authorizeRoles('admin'),upload.single('image'),menuController.updateMenuItem);
 
-module.exports = router;
+// Delete menu item by ID
+router.delete('/delete-menu/:id',authenticateToken, authorizeRoles('admin'), menuController.deleteMenuItem);
 
+module.exports = router;

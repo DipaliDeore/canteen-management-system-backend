@@ -11,8 +11,10 @@ const menuRoutes = require('./routes/admin/menuRoute');
 const contactRoutes = require('./routes/contactUsRoute');//contactUs
 const feedbackRoutes = require('./routes/feedbackRoute');//feedback
 
-// Middlewares
+
+// Handle preflight requests
 app.use(cors());
+
 app.use(express.json());
 
 
@@ -43,7 +45,7 @@ app.get('/', (req, res) => {
 });
 
 // Server listener
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
